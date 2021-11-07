@@ -1,14 +1,17 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import Typed from "typed.js";
 import { useRef, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { useAuth } from "../context/AuthContext";
 
 interface Props {}
 
 const Home: NextPage = (props: Props) => {
-    let user: boolean = true;
+    let user: boolean = false;
 
     const el = useRef<HTMLSpanElement>(null);
+    const { login, logout } = useAuth();
 
     useEffect(() => {
         const typed = new Typed(el.current!, {
@@ -49,18 +52,19 @@ const Home: NextPage = (props: Props) => {
                 {user ? (
                     <div
                         className="px-3 py-2 rounded-md font-black text-xl shadow-md
-                            bg-gradient-to-br from-cream to-lightBlue
+                            bg-gradient-to-br from-cream to-lightBlue cursor-pointer
                             hover:from-lightBlue hover:to-cream"
                     >
-                        {/* <Link to={`/keeper/${user.name}`}> */}
-                        <button>Go To Keep &#10230;</button>
-                        {/* </Link> */}
+                        <Link href={`/user/shareef`}>
+                            <button>Go To Keep &#10230;</button>
+                        </Link>
                     </div>
                 ) : (
                     <div
                         className="rowCenter space-x-2 px-6 py-4 rounded-md bg-lightBrown 
-                            cursor-pointer bg-opacity-75 hover:opacity-90 focus:opacity-90"
-                        // onClick={login}
+                            cursor-pointer bg-opacity-75 hover:opacity-90 focus:opacity-90
+                            transition-opacity duration-300 ease-in"
+                        onClick={login}
                     >
                         <FcGoogle size="2rem" />
                         <button className="font-medium text-xl text-darkBlue">
