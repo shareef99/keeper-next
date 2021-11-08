@@ -8,10 +8,8 @@ import { useAuth } from "../context/AuthContext";
 interface Props {}
 
 const Home: NextPage = (props: Props) => {
-    let user: boolean = false;
-
     const el = useRef<HTMLSpanElement>(null);
-    const { login, logout } = useAuth();
+    const { login, logout, user } = useAuth();
 
     useEffect(() => {
         const typed = new Typed(el.current!, {
@@ -55,7 +53,7 @@ const Home: NextPage = (props: Props) => {
                             bg-gradient-to-br from-cream to-lightBlue cursor-pointer
                             hover:from-lightBlue hover:to-cream"
                     >
-                        <Link href={`/user/shareef`}>
+                        <Link href={`/user/${user.displayName}`}>
                             <button>Go To Keep &#10230;</button>
                         </Link>
                     </div>
