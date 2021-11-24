@@ -5,6 +5,18 @@
     --cream: #f3f1e2;
     --light-brown: #d3955ebf;
     --brown: #de955e;
+
+    --gray: #eee;
+    --gary-shade: #ccc;
+    --gray-200: rgb(229, 231, 235);
+    --light-black-shade: rgb(138, 131, 131);
+    --yellow: #f5ba13;
+    --yellow-200: #fde68a;
+    --yellow-300: rgba(252, 211, 77);
+    --yellow-400: #fbbf24;
+    --shadow-dark: rgba(0, 0, 0, 0.3);
+    --shadow-light: rgb(138, 137, 137);
+    --white: #fff;
 }
 
 html,
@@ -13,7 +25,10 @@ body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
         Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-color: var(--cream);
+    background: var(--light-black-shade);
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production 
+    environments. Thank you! */
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
 }
 
 * {

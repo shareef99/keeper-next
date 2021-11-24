@@ -16,6 +16,18 @@ module.exports = {
                 cream: "var(--cream)",
                 brown: "var(--brown)",
                 lightBrown: "var(--light-brown)",
+
+                gray: "var(--gray)",
+                grayShade: "var(--gray-shade)",
+                gray200: "var(--gray-200)",
+                lightBlackShade: "var(--light-black-shade)",
+                yellow: "var(--yellow)",
+                yellow200: "var(--yellow-200)",
+                yellow300: "var(--yellow-300)",
+                yellow400: "var(--yellow-400)",
+                shadowDark: "var(--shadow-dark)",
+                shadowLight: "var(--shadow-light)",
+                white: "var(--white)",
             },
         },
         screens: {
