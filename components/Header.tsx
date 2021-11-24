@@ -4,9 +4,9 @@ interface Props {}
 
 const Header = (props: Props) => {
     return (
-        <header className="px-4 py-8 flexCenter text-darkBlue bg-lightBrown shadow-md">
+        <header className="py-4 flexCenter text-darkBlue shadow-md">
             <div
-                className="font-extralight text-3xl"
+                className="font-extralight text-3xl cursor-default"
                 style={{
                     fontFamily: "McLaren, cursive",
                 }}
