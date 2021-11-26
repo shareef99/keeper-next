@@ -91,6 +91,7 @@ export function AuthProvider({ children }: Props) {
 
     const logout = () => {
         auth.signOut();
+        router.push("/");
         console.log("logout");
     };
 
@@ -105,6 +106,7 @@ export function AuthProvider({ children }: Props) {
                     uid: user.uid,
                 });
             } else {
+                setUser(undefined);
                 console.log("no user");
             }
         });
