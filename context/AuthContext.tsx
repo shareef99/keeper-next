@@ -87,9 +87,7 @@ export function AuthProvider({ children }: Props) {
                 setUser(userDetails);
 
                 try {
-                    console.log("Uploading user data to firebase");
                     await setDoc(doc(db, "users", user.email!), userDetails);
-                    console.log("User details saved to firestore");
                 } catch (error) {
                     console.log(error);
                 }

@@ -9,7 +9,7 @@ interface Props {}
 
 const Home: NextPage = (props: Props) => {
     const el = useRef<HTMLSpanElement>(null);
-    const { login, logout, user } = useAuth();
+    const { login, user } = useAuth();
 
     useEffect(() => {
         const typed = new Typed(el.current!, {

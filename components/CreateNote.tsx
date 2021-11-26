@@ -1,11 +1,25 @@
-import { useRef, FormEvent, useState } from "react";
+import { useRef, FormEvent } from "react";
 import { BiPlus } from "react-icons/bi";
+import { db } from "../lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { useAuth } from "../context/AuthContext";
 
 interface Props {
     isExpanded: boolean;
 }
 
+export interface NoteType {
+    id: string;
+    title: string;
+    content: string;
+    createdAt: string;
+    lastEditedAt: string;
+}
+
 const CreateNote = ({ isExpanded }: Props) => {
+    // Context
+    const { user } = useAuth();
+
     // Refs
     const contentRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLDivElement>(null);
@@ -13,6 +27,51 @@ const CreateNote = ({ isExpanded }: Props) => {
     // Handlers
     const submitNote = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        let title = titleRef?.current?.innerText.trim() || "Untitled";
+        let content = contentRef?.current?.innerText.trim() || "Empty note...";
+
+        addNote(title, content);
+
+        if (titleRef) {
+            if (titleRef.current) {
+                titleRef.current.innerText = "";
+            }
+        }
+
+        if (contentRef) {
+            if (contentRef.current) {
+                contentRef.current.innerText = "";
+            }
+        }
+    };
+
+    const addNote = async (title: string, content: string) => {
+        const id = title + Math.floor(Math.random() * 10000000);
+
+        const createdAt = `${new Date().toLocaleDateString(undefined, {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+        })}`;
+
+        if (title === "") {
+            title = "untitled";
+        }
+
+        const newNote: NoteType = {
+            id,
+            title,
+            content,
+            createdAt,
+            lastEditedAt: "Original",
+        };
+
+        try {
+            await setDoc(doc(db, "users", user?.email!, "notes", id), newNote);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const handleTitleChange = (e: FormEvent<HTMLDivElement>) => {
@@ -45,25 +104,6 @@ const CreateNote = ({ isExpanded }: Props) => {
                 data-placeholder="Take a note..."
                 className="w-full p-1 outline-none text-lg editableContent"
             />
-            {/* {isExpanded && (
-                    <div id="options-container" className="mt-2 space-y-2">
-                        <div className="flex items-center space-x-4 flex-wrap space-y-4">
-                            <div className="mr-auto space-x-2 space-y-2">
-                                {initialNoteLabels.map((label, index) => (
-                                    <span
-                                        key={index}
-                                        className="bg-gray-400 rounded-2xl px-3 py-1"
-                                    >
-                                        {label}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                        <div className="flex">
-                            <Options />
-                        </div>
-                    </div>
-                )} */}
             <button
                 className="flexCenter absolute right-[18px] -bottom-[18px] border-none rounded-full 
                         w-9 h-9 outline-none text-white bg-yellow400 hover:bg-black
