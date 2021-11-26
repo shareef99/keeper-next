@@ -1,14 +1,10 @@
 import React, { Fragment, useState } from "react";
 import CreateNote from "../../components/CreateNote";
 import Header from "../../components/Header";
-import { useAuth } from "../../context/AuthContext";
 
 interface Props {}
 
 const User = (props: Props) => {
-    // Context
-    const { logout } = useAuth();
-
     // State
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -32,9 +28,6 @@ const User = (props: Props) => {
                     <h1>Welcome to keeper, anything in mind? Write it down</h1>
                 </div> */}
                 <CreateNote isExpanded={isExpanded} />
-                <div className="m-10">
-                    <button onClick={logout}>Logout</button>
-                </div>
             </section>
         </Fragment>
     );
