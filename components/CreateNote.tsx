@@ -15,6 +15,13 @@ const CreateNote = ({ isExpanded }: Props) => {
         e.preventDefault();
     };
 
+    const handleTitleChange = (e: FormEvent<HTMLDivElement>) => {
+        // @ts-ignore
+        if (e.code === "Enter") {
+            contentRef?.current?.focus();
+        }
+    };
+
     return (
         <form
             onSubmit={submitNote}
@@ -28,6 +35,7 @@ const CreateNote = ({ isExpanded }: Props) => {
                     ref={titleRef}
                     data-placeholder="Title"
                     className="w-full p-1 outline-none text-xl font-medium editableTitle"
+                    onKeyPress={handleTitleChange}
                 />
             )}
             <div
