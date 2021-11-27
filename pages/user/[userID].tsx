@@ -1,13 +1,15 @@
-import React, { Fragment, useState } from "react";
-import CreateNote from "../../components/CreateNote";
+import { Fragment, useState } from "react";
 import Header from "../../components/Header";
+import CreateNote from "../../components/CreateNote";
+import DisplayNotes from "../../components/DisplayNotes";
 
 interface Props {}
 
 const User = (props: Props) => {
     // State
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
+    // Handlers/Functions
     const toggleExpand = (e: any) => {
         const allowedIds = ["title", "content", "create-note"];
         const currentId = e.target.id;
@@ -24,10 +26,8 @@ const User = (props: Props) => {
         <Fragment>
             <Header />
             <section className="container" onClick={toggleExpand}>
-                {/* <div>
-                    <h1>Welcome to keeper, anything in mind? Write it down</h1>
-                </div> */}
                 <CreateNote isExpanded={isExpanded} />
+                <DisplayNotes />
             </section>
         </Fragment>
     );
