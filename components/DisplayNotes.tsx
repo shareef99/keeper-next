@@ -43,27 +43,24 @@ const DisplayNotes = (props: Props) => {
     }, [notes]);
 
     return (
-        <div>
-            {notes ? (
-                <ul className="flex justify-center flex-wrap items-start">
-                    {notes.map((note, index) => (
-                        <Note
-                            key={index}
-                            id={note.id!}
-                            index={index}
-                            title={note.title}
-                            content={note.content}
-                        />
-                    ))}
-                </ul>
-            ) : (
+        <ul className="flex justify-center flex-wrap items-start">
+            {notes?.length === 0 && (
                 <Zoom in={true}>
                     <h1 className="font-medium text-2xl my-40 text-center px-2">
                         Welcome to keeper, anything in mind? Write it down
                     </h1>
                 </Zoom>
             )}
-        </div>
+            {notes?.map((note, index) => (
+                <Note
+                    key={index}
+                    id={note.id!}
+                    index={index}
+                    title={note.title}
+                    content={note.content}
+                />
+            ))}
+        </ul>
     );
 };
 
