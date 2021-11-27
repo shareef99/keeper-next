@@ -1,4 +1,4 @@
-import HighlightIcon from "@material-ui/icons/Highlight";
+import Highlight from "@mui/icons-material/Highlight";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { useAuth } from "../context/AuthContext";
 
@@ -15,7 +15,7 @@ const Header = (props: Props) => {
                     fontFamily: "McLaren, cursive",
                 }}
             >
-                <HighlightIcon className="mb-2 text-darkBlue" /> Keeper
+                <Highlight className="mb-2 text-darkBlue" /> Keeper
             </div>
             <div className="mt-[5px]" title="Logout">
                 <button onClick={logout}>

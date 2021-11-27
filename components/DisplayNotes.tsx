@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import type { NoteType } from "./CreateNote";
 import { db } from "../lib/firebase";
-import { onSnapshot, doc, collection, query } from "firebase/firestore";
+import { onSnapshot, collection, query } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
+import Zoom from "@mui/material/Zoom";
+import Note from "./Note";
 
 interface Props {}
 
@@ -42,11 +44,28 @@ const DisplayNotes = (props: Props) => {
     return (
         <div>
             {notes ? (
-                "Notes"
+                <ul className="flex justify-center flex-wrap items-start">
+                    {notes
+                        .sort(
+                            (a, b) =>
+                                +new Date(b.createdAt) - +new Date(a.createdAt)
+                        )
+                        .map((note, index) => (
+                            <Note
+                                key={index}
+                                id={note.id!}
+                                index={index}
+                                title={note.title}
+                                content={note.content}
+                            />
+                        ))}
+                </ul>
             ) : (
-                <div>
-                    <h1>Welcome to keeper, anything in mind? Write it down</h1>
-                </div>
+                <Zoom in={true}>
+                    <h1 className="font-medium text-2xl my-40 text-center px-2">
+                        Welcome to keeper, anything in mind? Write it down
+                    </h1>
+                </Zoom>
             )}
         </div>
     );
