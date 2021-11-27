@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { NoteType } from "./CreateNote";
 import { db } from "../lib/firebase";
-import { onSnapshot, collection, query } from "firebase/firestore";
+import { onSnapshot, collection, query, orderBy } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
 import Zoom from "@mui/material/Zoom";
 import Note from "./Note";
@@ -19,7 +19,8 @@ const DisplayNotes = (props: Props) => {
     useEffect(() => {
         if (user) {
             const notesRef = query(
-                collection(db, "users", user?.email!, "notes")
+                collection(db, "users", user?.email!, "notes"),
+                orderBy("createdAt", "desc")
             );
             onSnapshot(notesRef, (snapshot) => {
                 const notes: Array<NoteType> = [];
@@ -45,20 +46,15 @@ const DisplayNotes = (props: Props) => {
         <div>
             {notes ? (
                 <ul className="flex justify-center flex-wrap items-start">
-                    {notes
-                        .sort(
-                            (a, b) =>
-                                +new Date(b.createdAt) - +new Date(a.createdAt)
-                        )
-                        .map((note, index) => (
-                            <Note
-                                key={index}
-                                id={note.id!}
-                                index={index}
-                                title={note.title}
-                                content={note.content}
-                            />
-                        ))}
+                    {notes.map((note, index) => (
+                        <Note
+                            key={index}
+                            id={note.id!}
+                            index={index}
+                            title={note.title}
+                            content={note.content}
+                        />
+                    ))}
                 </ul>
             ) : (
                 <Zoom in={true}>
