@@ -58,6 +58,8 @@ const DisplayNotes = (props: Props) => {
                     index={index}
                     title={note.title}
                     content={note.content}
+                    createdAt={note.createdAt}
+                    lastEditedAt={note.lastEditedAt}
                 />
             ))}
         </ul>
