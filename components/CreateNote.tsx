@@ -4,9 +4,7 @@ import { db } from "../lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
 
-interface Props {
-    isExpanded: boolean;
-}
+interface Props {}
 
 export interface NoteType {
     id: string;
@@ -16,7 +14,7 @@ export interface NoteType {
     lastEditedAt: string;
 }
 
-const CreateNote = ({ isExpanded }: Props) => {
+const CreateNote = () => {
     // Context
     const { user } = useAuth();
 
@@ -87,16 +85,14 @@ const CreateNote = ({ isExpanded }: Props) => {
             className="container relative bg-gray sm:max-w-lg p-4 mx-auto mt-8 mb-5 rounded-lg shadow-2xl"
             id="create-note"
         >
-            {isExpanded && (
-                <div
-                    id="title"
-                    contentEditable={true}
-                    ref={titleRef}
-                    data-placeholder="Title"
-                    className="w-full p-1 outline-none text-xl font-medium editableTitle"
-                    onKeyPress={handleTitleChange}
-                />
-            )}
+            <div
+                id="title"
+                contentEditable={true}
+                ref={titleRef}
+                data-placeholder="Title"
+                className="w-full p-1 outline-none text-xl font-medium editableTitle"
+                onKeyPress={handleTitleChange}
+            />
             <div
                 id="content"
                 contentEditable={true}
