@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { NoteType } from "./CreateNote";
-import { db } from "../lib/firebase";
+import { db } from "../firebase";
 import { onSnapshot, collection, query, orderBy } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
 import Zoom from "@mui/material/Zoom";

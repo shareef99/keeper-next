@@ -1,6 +1,6 @@
 import { useRef, FormEvent } from "react";
 import { BiPlus } from "react-icons/bi";
-import { db } from "../lib/firebase";
+import { db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
 

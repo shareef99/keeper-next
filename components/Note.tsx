@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { doc, deleteDoc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../lib/firebase";
+import { db } from "../firebase";
 import { MdDelete } from "react-icons/md";
 import { useAuth } from "../context/AuthContext";
 import Zoom from "@mui/material/Zoom";

@@ -6,7 +6,7 @@ import {
     ReactNode,
     useEffect,
 } from "react";
-import { auth, db } from "../lib/firebase";
+import { auth, db } from "../firebase";
 import {
     GoogleAuthProvider,
     signInWithPopup,
