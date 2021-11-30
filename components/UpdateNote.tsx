@@ -18,9 +18,16 @@ interface Props {
     onClose: () => void;
 }
 
-const UpdateNote = (props: Props) => {
-    const { id, title, content, onSetNote, onClose, onUpdateNote } = props;
-
+const UpdateNote = ({
+    id,
+    title,
+    content,
+    onSetNote,
+    onClose,
+    onUpdateNote,
+    createdAt,
+    lastEditedAt,
+}: Props) => {
     // Refs
     const titleRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
@@ -89,7 +96,24 @@ const UpdateNote = (props: Props) => {
                 className="w-full p-1 outline-none text-lg"
                 ref={contentRef}
             />
-            <div className="flex flex-col items-end cursor-pointer">
+            <div className="flex justify-between items-center my-2 cursor-pointer">
+                <div>
+                    <p>
+                        {lastEditedAt === "Original" ? (
+                            <span>
+                                Created:{" "}
+                                <time className="font-medium">{createdAt}</time>
+                            </span>
+                        ) : (
+                            <span>
+                                Edited:{" "}
+                                <time className="font-medium">
+                                    {lastEditedAt}
+                                </time>
+                            </span>
+                        )}
+                    </p>
+                </div>
                 <button type="submit">
                     <MdCloseFullscreen size="1.5rem" />
                 </button>
